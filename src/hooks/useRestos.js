@@ -12,7 +12,9 @@ export default () => {
                 params: {
                     limit: 50,
                     term: searchTerm,
-                    location: 'ottawa'
+                    //location: 'ottawa'
+                    latitude: 45.349341,
+                    longitude: -75.755997
                 }
             });
             setRestos(response.data.businesses);

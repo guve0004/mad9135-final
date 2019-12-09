@@ -26,6 +26,7 @@ const RestosShowScreen = ({ navigation }) => {
             <Text style={styles.textStyle}>Phone number: {resto.phone}</Text>
             <Text style={styles.textStyle}>Price range: {resto.price}</Text>
             <Text style={styles.textStyle}>Address: {resto.location.address1}</Text>
+            <Text style={styles.textStyle}>Distance: {resto.distance}</Text>
             <FlatList
                 data={resto.photos}
                 keyExtractor={photo => photo}
