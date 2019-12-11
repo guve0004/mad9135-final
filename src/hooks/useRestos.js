@@ -14,7 +14,7 @@ export default () => {
                     term: searchTerm,
                     //latitude: position.latitude,
                     //longitude: position.longitude
-                    //location: 'ottawa',
+                    //location: selfLocation,
                     latitude: 45.349341,
                     longitude: -75.755997
                 }

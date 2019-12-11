@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { requestPermissionsAsync } from 'expo-location';
+import { requestPermissionsAsync, watchPositionAsync, Accuracy } from 'expo-location';
 import SearchBar from '../components/SearchBar';
 import useRestos from '../hooks/useRestos';
 import RestosList from '../components/RestosList';
@@ -13,6 +13,13 @@ const SearchScreen = () => {
     const startWatching = async () => {
         try {
             await requestPermissionsAsync()
+            await watchPositionAsync({
+                accuracy: Accuracy.BestForNavigation,
+                timeInterval: 10000,
+                distanceInterval: 100
+            }, (location) => {
+                console.log(location)
+            })
         } catch (e) {
             setErr(e)
         }
