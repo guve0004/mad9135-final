@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { requestPermissionsAsync } from 'expo-location';
 import SearchBar from '../components/SearchBar';
 import useRestos from '../hooks/useRestos';
 import RestosList from '../components/RestosList';
@@ -7,6 +8,18 @@ import RestosList from '../components/RestosList';
 const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchApi, restos, errorMessage] = useRestos();
+    const [err, setErr] = useState(null)
+
+    const startWatching = async () => {
+        try {
+            await requestPermissionsAsync()
+        } catch (e) {
+            setErr(e)
+        }
+    }
+    useEffect(() => {
+        startWatching();
+    }, []);
 
     return (
         <>
@@ -16,6 +29,7 @@ const SearchScreen = () => {
                 onTermSubmit={() => searchApi(term)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
+            {err ? <Text>Please enable location services</Text> : null}
             <ScrollView>
                 <RestosList
                     restos={restos.filter(resto => {

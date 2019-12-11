@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+//import Geolocation from "@react-native-community/geolocation";
 import yelp from '../api/yelp';
 
 export default () => {
@@ -6,13 +7,14 @@ export default () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const searchApi = async searchTerm => {
-        console.log('Hi there!');
         try {
             const response = await yelp.get('/search', {
                 params: {
                     limit: 50,
                     term: searchTerm,
-                    //location: 'ottawa'
+                    //latitude: position.latitude,
+                    //longitude: position.longitude
+                    //location: 'ottawa',
                     latitude: 45.349341,
                     longitude: -75.755997
                 }
