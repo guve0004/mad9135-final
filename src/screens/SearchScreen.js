@@ -9,6 +9,7 @@ const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchApi, restos, errorMessage] = useRestos();
     const [err, setErr] = useState(null)
+    const [loc, setLoc] = useState(null)
 
     const startWatching = async () => {
         try {
@@ -17,7 +18,11 @@ const SearchScreen = () => {
                 accuracy: Accuracy.BestForNavigation,
                 timeInterval: 10000,
                 distanceInterval: 100
-            })
+            },
+                location => {
+                    //console.log(location)
+                    setLoc(location)
+                })
         } catch (e) {
             setErr(e)
         }
@@ -26,6 +31,8 @@ const SearchScreen = () => {
     useEffect(() => {
         startWatching();
     }, []);
+
+    console.log(loc)
 
     return (
         <>

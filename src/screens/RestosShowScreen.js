@@ -6,7 +6,7 @@ const RestosShowScreen = ({ navigation }) => {
     const [resto, setResto] = useState(null);
     const id = navigation.getParam('id');
 
-    console.log(resto)
+    //console.log(resto)
 
     const getResto = async id => {
         const response = await yelp.get(`/${id}`);
