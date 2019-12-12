@@ -32,8 +32,6 @@ const SearchScreen = () => {
         startWatching();
     }, []);
 
-    console.log(loc)
-
     return (
         <>
             <SearchBar
