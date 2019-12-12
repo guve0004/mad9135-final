@@ -17,13 +17,12 @@ const SearchScreen = () => {
                 accuracy: Accuracy.BestForNavigation,
                 timeInterval: 10000,
                 distanceInterval: 100
-            }, (location) => {
-                console.log(location)
             })
         } catch (e) {
             setErr(e)
         }
     }
+
     useEffect(() => {
         startWatching();
     }, []);
@@ -42,17 +41,17 @@ const SearchScreen = () => {
                     restos={restos.filter(resto => {
                         return resto.distance <= 5000
                     })}
-                    title="Nearby"
+                    title="Nearby (in 5 km)"
                 />
                 <RestosList restos={restos.filter(resto => {
                     return (resto.distance <= 15000 && resto.distance >= 5000)
                 })}
-                    title="Medium distance" />
+                    title="Medium distance (in 5-15 km)" />
                 <RestosList
                     restos={restos.filter(resto => {
                         return (resto.distance <= 25000 && resto.distance >= 15000)
                     })}
-                    title="A Little Far"
+                    title="A Little Far (in 15-25 km)"
                 />
             </ScrollView>
         </>

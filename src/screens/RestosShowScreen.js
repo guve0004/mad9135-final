@@ -41,18 +41,20 @@ const styles = StyleSheet.create({
     image: {
         height: 150,
         width: 200,
+        marginTop: 10,
         marginLeft: 15,
         marginBottom: 5
     },
     textStyle: {
-        fontSize: 16,
+        fontSize: 22,
         fontWeight: 'normal',
         marginLeft: 15,
         marginBottom: 5
     },
     nameStyle: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
+        marginTop: 15,
         marginLeft: 15,
         marginBottom: 5
     }

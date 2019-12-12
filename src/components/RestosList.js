@@ -40,13 +40,13 @@ const RestosList = ({ title, restos, navigation }) => {
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
         marginLeft: 15,
         marginBottom: 5
     },
     container: {
-        marginBottom: 10
+        marginBottom: 20
     }
 });
 

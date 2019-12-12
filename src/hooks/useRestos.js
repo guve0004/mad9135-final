@@ -12,9 +12,9 @@ export default () => {
                 params: {
                     limit: 50,
                     term: searchTerm,
-                    //latitude: position.latitude,
-                    //longitude: position.longitude
-                    //location: selfLocation,
+                    // latitude: loc.coords.latitude,
+                    // longitude: loc.coords.longitude
+                    // location: loc
                     latitude: 45.349341,
                     longitude: -75.755997
                 }
