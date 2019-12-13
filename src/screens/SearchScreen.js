@@ -29,12 +29,12 @@ const SearchScreen = () => {
                 <RestosList restos={restos.filter(resto => {
                     return (resto.distance <= 15000 && resto.distance >= 5000)
                 })}
-                    title="Medium distance (in 5-15 km)" />
+                    title="Medium distance (5-15 km)" />
                 <RestosList
                     restos={restos.filter(resto => {
-                        return (resto.distance <= 25000 && resto.distance >= 15000)
+                        return (resto.distance <= 30000 && resto.distance >= 15000)
                     })}
-                    title="A Little Far (in 15-25 km)"
+                    title="A Little Far (15-30 km)"
                 />
             </ScrollView>
         </>
