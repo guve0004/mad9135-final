@@ -6,28 +6,28 @@ export default () => {
     const [restos, setRestos] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
 
-    const searchApi = async searchTerm => {
+    const searchApi = async (searchTerm, locLat, locLong) => {
         try {
             const response = await yelp.get('/search', {
                 params: {
                     limit: 50,
                     term: searchTerm,
-                    // latitude: loc.coords.latitude,
-                    // longitude: loc.coords.longitude
-                    // location: loc
-                    latitude: 45.349341,
-                    longitude: -75.755997
+                    latitude: locLat,
+                    longitude: locLong
+                    // location: 'ottawa'
                 }
             });
+
             setRestos(response.data.businesses);
+
         } catch (err) {
             setErrorMessage('Something went wrong');
         }
     };
 
-    useEffect(() => {
-        searchApi('fast food');
-    }, []);
+    // useEffect(() => {
+    //     searchApi('fast food', 45.349341, -75.755997);
+    // }, []);
 
     return [searchApi, restos, errorMessage];
 };

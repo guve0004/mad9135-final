@@ -1,47 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { requestPermissionsAsync, watchPositionAsync, Accuracy } from 'expo-location';
 import SearchBar from '../components/SearchBar';
 import useRestos from '../hooks/useRestos';
 import RestosList from '../components/RestosList';
+import useLocation from '../hooks/useLocation'
 
 const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchApi, restos, errorMessage] = useRestos();
-    const [err, setErr] = useState(null)
-    const [loc, setLoc] = useState(null)
-
-    const startWatching = async () => {
-        try {
-            await requestPermissionsAsync()
-            await watchPositionAsync({
-                accuracy: Accuracy.BestForNavigation,
-                timeInterval: 10000,
-                distanceInterval: 100
-            },
-                location => {
-                    //console.log(location)
-                    setLoc(location)
-                })
-        } catch (e) {
-            setErr(e)
-        }
-    }
-
-    useEffect(() => {
-        startWatching();
-    }, []);
+    const [locLat, locLong] = useLocation();
 
     return (
         <>
             <SearchBar
                 term={term}
                 onTermChange={setTerm}
-                onTermSubmit={() => searchApi(term)}
+                onTermSubmit={() => searchApi(term, locLat, locLong)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            {err ? <Text>Please enable location services</Text> : null}
             <ScrollView>
+                <Text style={styles.textStyle}>You can search restaurants with any key word.</Text>
                 <RestosList
                     restos={restos.filter(resto => {
                         return resto.distance <= 5000
@@ -63,6 +41,11 @@ const SearchScreen = () => {
     );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    textStyle: {
+        fontSize: 24,
+        margin: 15
+    }
+});
 
 export default SearchScreen;
